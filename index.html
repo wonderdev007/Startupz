@@ -52,8 +52,10 @@
                         <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                             <div class="navbar-nav ms-auto mx-xl-auto">
                                 <a href="index.html" class="nav-item nav-link">Startups</a>
-                                <a href="index.html" class="nav-item nav-link">Contact</a>
-                                <button class="btn rounded-pill px-5"  style="border-color: #46B8C8; color: #46B8C8;">Work with us!</button>
+                                <a href="#contact" class="nav-item nav-link">Contact</a>
+                                <a href="#message">
+                                    <button class="btn rounded-pill px-5" style="border-color: #46B8C8; color: #46B8C8;">Work with us!</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -68,7 +70,7 @@
                 <div>
                     <h1 class="big-font" style="font-size: 85px; color: #3D4F5C;">We Create<br> Startups.</h1>
                     <h4 class="text-warning my-4">We are startup studio that develops and launches new companies.</h4>
-                    <a href="" class="btn rounded-pill px-5 py-3 mb-5 text-white" style="background-color: #46B8C8;">See our works</a>
+                    <a href="#our-works" class="btn rounded-pill px-5 py-3 mb-5 text-white" style="background-color: #46B8C8;">See our works</a>
                 </div>
             </div>
         </div>
@@ -181,7 +183,7 @@
         <div class="container-fluid services p-5 mb-5">
             <div class="container">
                 <div class="text-center mx-auto pb-5" data-wow-delay=".3s">
-                    <h1 class=" semi-font">Our Works</h1>
+                    <h1 class=" semi-font" id="our-works">Our Works</h1>
                 </div>
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6" data-wow-delay=".3s">
@@ -290,16 +292,19 @@
                         <div class="col-lg-5">
                             <div class="p-5 mb-5 rounded contact-form">
                                 <div class="mb-4">
-                                    <input type="text" class="form-control border-0 py-3" placeholder="Name*">
+                                    <input type="text" class="form-control border-0 py-3" placeholder="Name*" pattern="[a-zA-Z ]{2,}" title="Please enter a valid name (letters only)" required>
+                                    <div class="warning-message" id="nameWarning" style="display: none; color: red;">Please enter your name.</div>
                                 </div>
                                 <div class="mb-4">
-                                    <input type="email" class="form-control border-0 py-3" placeholder="Email*">
+                                    <input type="email" class="form-control border-0 py-3" placeholder="Email*" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address" required>
+                                    <div class="warning-message" id="emailWarning" style="display: none; color: red;">Please enter a valid email address.</div>
                                 </div>
                                 <div class="mb-4">
-                                    <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10" placeholder="Message*"></textarea>
+                                    <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10" placeholder="Message*" required></textarea>
+                                    <div class="warning-message" id="messageWarning" style="display: none; color: red;">Please enter your message.</div>
                                 </div>
                                 <div class="text-center">
-                                    <button class="btn bg-dark rounded-pill text-white py-3 px-5" type="button">Send Message</button>
+                                    <button id="message" class="btn bg-dark rounded-pill text-white py-3 px-5" type="button">Shoot us a Message</button>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +337,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <a href="#" class="h3">Contact</a>
+                        <a href="#" id="contact" class="h3">Contact</a>
                         <div class="mt-4 d-flex flex-column help-link">
                             <a href="" class="mb-2" style="color: #939393;">World Trade Center - The Hague Prinses Margrietplantsoen 33 2595 AM The Hague The Netherlands</a>
                             <a href="" class="mb-2 text-info">Send us an email</a>
@@ -350,7 +355,32 @@
             </div>
         </div>
         <!-- Footer End -->
+        <script>
+            document.getElementById("message").addEventListener("click", function() {
+                var name = document.querySelector('input[type="text"]').value;
+                var email = document.querySelector('input[type="email"]').value;
+                var message = document.querySelector('textarea').value;
         
+                if (name === "") {
+                    document.getElementById("nameWarning").style.display = "block";
+                } else {
+                    document.getElementById("nameWarning").style.display = "none";
+                }
+        
+                if (email === "") {
+                    document.getElementById("emailWarning").style.display = "block";
+                } else {
+                    document.getElementById("emailWarning").style.display = "none";
+                }
+        
+                if (message === "") {
+                    document.getElementById("messageWarning").style.display = "block";
+                } else {
+                    document.getElementById("messageWarning").style.display = "none";
+                }
+            });
+        </script>
+
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
